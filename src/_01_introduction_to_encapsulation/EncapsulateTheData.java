@@ -1,5 +1,8 @@
 package _01_introduction_to_encapsulation;
+import static org.junit.jupiter.api.Assertions.*;
 
+
+import org.junit.jupiter.api.Test;
 /*
  * Encapsulation is a way of protecting the data in a class from being
  * unintentionally altered from another class.
@@ -23,12 +26,90 @@ public class EncapsulateTheData {
 	//2. Create a new JUnit Test case and write tests to verify that 
 	//   the member variables' getters and setters are working
 	
-	int itemsReceived; //must not be negative. All negative arguments get set to 0.
-	float degreesTurned; //must be locked between 0.0 and 360.0 inclusive.
-	String nomenclature = " "; //must not be set to a blank string. Blank Strings get set to a space
-	Object memberObj;  //must not be a String.  If it is a String, set it equal to a new Object();
-	
-	public static void main(String[] args) {
-		
+	private int itemsReceived; //must not be negative. All negative arguments get set to 0.
+	private float degreesTurned; //must be locked between 0.0 and 360.0 inclusive.
+	private String nomenclature = " "; //must not be set to a blank string. Blank Strings get set to a space
+	private Object memberObj;  //must not be a String.  If it is a String, set it equal to a new Object();
+	public void setItemsRecieved(int _itemsReceived)
+	{
+		if(_itemsReceived < 0)
+			itemsReceived = 0;
+		else
+			itemsReceived = _itemsReceived;
+	}
+	public int getItemsRecieved()
+	{
+		return itemsReceived;
+	}
+	public void setDegreesTurned(float _degreesTurned)
+	{
+		if(_degreesTurned < 0)
+			degreesTurned = 0;
+		else if(_degreesTurned > 360)
+			degreesTurned = 360;
+		else
+			degreesTurned = _degreesTurned;
+	}
+	public float getDegreesTurned()
+	{
+		return degreesTurned;
+	}
+	public void setNomenclature(String str)
+	{
+		if(str.length() == 0)
+			nomenclature = " ";
+		else
+			nomenclature = str;
+	}
+	public String getNomenclature()
+	{
+		return nomenclature;
+	}
+	public void setMemberObj(Object _memberObj)
+	{
+		if(_memberObj instanceof String )
+			memberObj = new Object();
+		else
+			memberObj = _memberObj;
+	}
+	public Object getMemberObj()
+	{
+		return memberObj;
+	}
+	//public static void main(String[] args) {
+	//}
+	@Test
+	void testItemsRecieved()
+	{
+		this.setItemsRecieved(3);
+		assertEquals(this.getItemsRecieved(), 3);
+		this.setItemsRecieved(-1);
+		assertEquals(this.getItemsRecieved(), 0);
+	}
+	@Test
+	void testDegreesTurned()
+	{
+		this.setDegreesTurned(3);
+		assertEquals(this.getDegreesTurned(), 3);
+		this.setDegreesTurned(-1);
+		assertEquals(this.getDegreesTurned(), 0);
+		this.setDegreesTurned(1000);
+		assertEquals(this.getDegreesTurned(), 360);
+	}
+	@Test
+	void testNomenclature()
+	{
+		this.setNomenclature("");
+		assertEquals(this.getNomenclature(), " ");
+		this.setNomenclature("testtime");
+		assertEquals(this.getNomenclature(), "testtime");
+	}
+	@Test
+	void testMemberObj()
+	{
+		this.setMemberObj(3);
+		assertEquals(this.getMemberObj(), 3);
+		this.setMemberObj("eww strings");
+		assertFalse(this.getMemberObj() instanceof String);
 	}
 }
