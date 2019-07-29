@@ -3,16 +3,16 @@ package _03_polymorphs;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class MovingMorph extends Polymorph{
-	public MovingMorph(int x, int y, int width, int height)
-	{
+public class MouseMorph extends Polymorph{
+	public MouseMorph(int x, int y, int width, int height){
 		super(x,y,width,height);
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.DARK_GRAY);
+		// TODO Auto-generated method stub
+		g.setColor(Color.yellow);
 		g.fillRect(x, y, width, height);
 	}
-
+	
 }
